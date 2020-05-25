@@ -232,6 +232,10 @@ class CustomTextView @JvmOverloads constructor(
     }
 
     private fun initializeStaticLayout() {
+        if (width == 0) {
+            return
+        }
+
         staticLayout = StaticLayout(
             text,
             fontPaint,
