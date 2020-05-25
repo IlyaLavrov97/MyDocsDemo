@@ -171,8 +171,7 @@ class CustomTextView @JvmOverloads constructor(
         }
 
         if (shouldBeCentred) {
-            xPosition = if (staticLayout.lineCount > 1) 0f else (width - textWidth) / 2f
-            xPosition += paddingStart
+            xPosition = if (staticLayout.lineCount > 1) paddingStart.toFloat() else (width - textWidth) / 2f
 
             yPosition = (height - staticLayout.height) / 2f
             shouldBeCentred = false

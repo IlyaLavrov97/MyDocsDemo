@@ -1,6 +1,7 @@
 package com.example.mydocdemo.viewmodel.document
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.example.mydocdemo.entity.DocumentEntry
 import com.example.mydocdemo.interactor.document.IGetDocumentInteractor
 import com.example.mydocdemo.viewmodel.BaseViewModel
@@ -10,7 +11,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class DocumentViewModel(
-    getDocumentInteractor: IGetDocumentInteractor
+    getDocumentInteractor: IGetDocumentInteractor,
+    private val handle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val document: MutableLiveData<DocumentEntry> = MutableLiveData()
