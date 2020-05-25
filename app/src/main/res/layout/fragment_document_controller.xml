@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:divider="@drawable/divider_document_controller"
+    android:orientation="horizontal"
+    android:padding="@dimen/inset2x"
+    android:showDividers="middle">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/boldControllerButton"
+        android:layout_width="@dimen/size5x"
+        android:layout_height="@dimen/size5x"
+        android:background="@drawable/background_state_button"
+        android:src="@drawable/ic_format_b_icon" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/italicControllerButton"
+        android:layout_width="@dimen/size5x"
+        android:layout_height="@dimen/size5x"
+        android:background="@drawable/background_state_button"
+        android:src="@drawable/ic_format_i_icon" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/sizeDownControllerButton"
+        android:layout_width="@dimen/size5x"
+        android:layout_height="@dimen/size5x"
+        android:background="@drawable/background_state_button_default"
+        android:src="@drawable/ic_format_decrease_icon" />
+
+    <TextView
+        android:id="@+id/sizeControllerTextView"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="@android:color/white"
+        tools:text="120" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/sizeUpControllerButton"
+        android:layout_width="@dimen/size5x"
+        android:layout_height="@dimen/size5x"
+        android:background="@drawable/background_state_button_default"
+        android:src="@drawable/ic_format_increase_icon" />
+
+</LinearLayout>

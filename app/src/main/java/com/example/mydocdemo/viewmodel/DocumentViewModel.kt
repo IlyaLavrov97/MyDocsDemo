@@ -2,21 +2,27 @@ package com.example.mydocdemo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mydocdemo.entity.DocumentEntry
+import com.example.mydocdemo.interactor.document.GetDocumentInteractor
 import com.example.mydocdemo.interactor.document.IGetDocumentInteractor
+import com.example.mydocdemo.repository.document.FakeDocumentRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
-class DocumentViewModel (
+class DocumentViewModel: BaseViewModel() {
     private val getDocumentInteractor: IGetDocumentInteractor
-) : BaseViewModel() {
+
     private val document: MutableLiveData<DocumentEntry> = MutableLiveData()
     private val isBold: MutableLiveData<Boolean> = MutableLiveData()
     private val isItalic: MutableLiveData<Boolean> = MutableLiveData()
     private val isSizeUp: MutableLiveData<Boolean> = MutableLiveData()
+    private val size: MutableLiveData<Int> = MutableLiveData()
 
     init {
+        // TODO Make singleton and add DI
+        getDocumentInteractor = GetDocumentInteractor(FakeDocumentRepository())
+
         getDocumentInteractor
             .getDocument()
             .subscribeOn(Schedulers.io())
@@ -36,20 +42,14 @@ class DocumentViewModel (
 
     fun isSizeUp() = isSizeUp
 
-    fun turnOnBold() {
-        isBold.postValue(true)
+    fun getSize() = size
+
+    fun setBold(value: Boolean) {
+        isBold.postValue(value)
     }
 
-    fun turnOffBold() {
-        isBold.postValue(false)
-    }
-
-    fun turnOnItalic() {
-        isItalic.postValue(true)
-    }
-
-    fun turnOffItalic() {
-        isItalic.postValue(false)
+    fun setItalic(value: Boolean) {
+        isItalic.postValue(value)
     }
 
     fun plusSize() {
@@ -60,7 +60,7 @@ class DocumentViewModel (
         isSizeUp.postValue(false)
     }
 
-    private fun handleEx(ex: Throwable) {
-        // TODO impl handle
+    fun postNewSize(newSize: Int) {
+        size.postValue(newSize)
     }
 }

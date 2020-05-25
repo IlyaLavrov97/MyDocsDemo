@@ -7,11 +7,15 @@ import io.reactivex.rxjava3.disposables.Disposable
 open class BaseViewModel : ViewModel() {
     private val destroyCompositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    protected fun Disposable.keepUntilDestroy() {
-        destroyCompositeDisposable.add(this)
-    }
-
     override fun onCleared() {
         destroyCompositeDisposable.clear()
+    }
+
+    protected fun handleEx(ex: Throwable) {
+        // TODO impl handle
+    }
+
+    protected fun Disposable.keepUntilDestroy() {
+        destroyCompositeDisposable.add(this)
     }
 }
