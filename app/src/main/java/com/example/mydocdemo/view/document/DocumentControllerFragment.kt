@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateViewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import com.example.mydocdemo.R
-import com.example.mydocdemo.viewmodel.DocumentViewModel
+import com.example.mydocdemo.viewmodel.document.DocumentViewModel
+import com.example.mydocdemo.viewmodel.document.DocumentViewModelFactory
 import kotlinx.android.synthetic.main.fragment_document_controller.*
 
 class DocumentControllerFragment: Fragment() {
     private val viewModel: DocumentViewModel by activityViewModels(
-        factoryProducer = { SavedStateViewModelFactory(Application(), this) }
+        factoryProducer = { DocumentViewModelFactory() }
     )
 
     override fun onCreateView(

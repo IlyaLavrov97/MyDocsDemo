@@ -1,17 +1,17 @@
-package com.example.mydocdemo.viewmodel
+package com.example.mydocdemo.viewmodel.document
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mydocdemo.entity.DocumentEntry
-import com.example.mydocdemo.interactor.document.GetDocumentInteractor
 import com.example.mydocdemo.interactor.document.IGetDocumentInteractor
-import com.example.mydocdemo.repository.document.FakeDocumentRepository
+import com.example.mydocdemo.viewmodel.BaseViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
-class DocumentViewModel: BaseViewModel() {
-    private val getDocumentInteractor: IGetDocumentInteractor
+class DocumentViewModel(
+    getDocumentInteractor: IGetDocumentInteractor
+) : BaseViewModel() {
 
     private val document: MutableLiveData<DocumentEntry> = MutableLiveData()
     private val isBold: MutableLiveData<Boolean> = MutableLiveData()
@@ -20,9 +20,6 @@ class DocumentViewModel: BaseViewModel() {
     private val size: MutableLiveData<Int> = MutableLiveData()
 
     init {
-        // TODO Make singleton and add DI
-        getDocumentInteractor = GetDocumentInteractor(FakeDocumentRepository())
-
         getDocumentInteractor
             .getDocument()
             .subscribeOn(Schedulers.io())

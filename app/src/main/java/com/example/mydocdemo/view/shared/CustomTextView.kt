@@ -166,6 +166,10 @@ class CustomTextView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        if (!this::staticLayout.isInitialized) {
+            return
+        }
+
         if (shouldBeCentred) {
             xPosition = if (staticLayout.lineCount > 1) 0f else (width - textWidth) / 2f
             xPosition += paddingStart
