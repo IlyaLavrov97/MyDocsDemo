@@ -118,14 +118,16 @@ class CustomTextView @JvmOverloads constructor(
         }
 
     init {
-        fontPaint.textSize = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP,
-            initialFontSize,
-            resources.displayMetrics
-        )
-        fontPaint.color = Color.BLACK
-        fontPaint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-        fontPaint.style = Paint.Style.FILL_AND_STROKE
+        fontPaint.run {
+            textSize = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP,
+                initialFontSize,
+                resources.displayMetrics
+            )
+            color = Color.BLACK
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+            style = Paint.Style.FILL_AND_STROKE
+        }
 
         setOnTouchListener { _, event ->
             val touchX = event.x
